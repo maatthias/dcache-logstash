@@ -1,0 +1,15 @@
+ALL_BETWEEN_COLUMNS (?<=:)(.*?)(?=:)
+DCACHE_URI_PORT (?<=:)(.*?)(?=:)
+
+HOST_FQDN (%{URI_HOST_NAME:[host][name]}\.%{URI_DOMAIN:[host][domain]}|%{URI_HOST_NAME:[host][name]})
+T1_FQDN (%{URI_HOST_NAME:[@metadata][temp][host]}\.%{URI_DOMAIN:[@metadata][temp][domain]}|%{URI_HOST_NAME:[@metadata][temp][host]})
+
+T1_IPORHOST_PORT (%{T1_IPV4_PORT}|%{T1_IPV6_PORT}|%{T1_HOSTNAME_PORT})
+
+T1_HOSTNAME_PORT %{HOSTNAME:[@metadata][temp][hostname]}(?::%{POSINT:[@metadata][temp][port]})?
+T1_IPV4_PORT %{IPV4:[@metadata][temp][ip]}(?::%{POSINT:[@metadata][temp][port]})?
+T1_IPV6_PORT (%{DCACHE_IPV6}|%{IPV6:[@metadata][temp][ip]}(?::%{POSINT:[@metadata][temp][port]})?)
+
+## Modules
+URI_DOMAIN [a-zA-Z0-9._-]+
+URI_HOST_NAME [a-zA-Z0-9-]+

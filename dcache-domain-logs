@@ -1,0 +1,3 @@
+DOMAIN_TIME_STAMP %{MONTHDAY} %{MONTH} %{YEAR} %{TIME}
+CELLNAME [\<\>a-zA-Z0-9._-]+
+DOMAIN_LOG_LINE %{DOMAIN_TIME_STAMP:domain_timestamp} \((%{CELLNAME:cell_name})?\) \[%{DATA:ndc}\] %{GREEDYDATA:msg}
